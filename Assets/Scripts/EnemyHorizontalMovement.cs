@@ -7,7 +7,7 @@ public class EnemyHorizontalMovement : MonoBehaviour
     public float speed = 2f;
     private Rigidbody2D rbody;
     public bool left = true;
-    public GroundChecker check;
+
     // Use this for initialization
     void Start()
     {
@@ -17,31 +17,31 @@ public class EnemyHorizontalMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
-        
+
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        left = !left;
+        if (collision.tag == "InvisibleWall")
+        {
+            left = !left;
+        }
 
     }
     private void FixedUpdate()
     {
-        
+
         if (left == true)
         {
-            rbody.MovePosition(rbody.position + (-(Vector2)transform.right * Time.deltaTime * speed));
+            rbody.velocity = -(Vector2)transform.right * speed;
             transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
-            rbody.MovePosition(rbody.position + ((Vector2)transform.right * Time.deltaTime * speed));
+            rbody.velocity = (Vector2)transform.right * speed;
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        if (check.isGrounded == false)
-        {
-            left = !left;
-        }
+
     }
 }
