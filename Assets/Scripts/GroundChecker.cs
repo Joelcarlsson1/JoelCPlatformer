@@ -5,17 +5,18 @@ using UnityEngine;
 public class GroundChecker : MonoBehaviour
 {
     //A bool that changes based on if the player is on the ground or not
-    public bool isGrounded;
+    public int touching;
 
     //If the object is on the ground it sets isGrounded to true
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isGrounded = true;
+        touching = touching + 1;
     }
 
-    //If the object leaves/isn't on another object isGrounded is set to false which makes you unable to jump in the PlayerMovement script.
+    //If the object leaves/isn't on another object touching is reduced by one which makes you unable to jump in the PlayerMovement script.
+    //OnTriggerExit does stuff inside when you leave the trigger
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isGrounded = false;
+        touching = touching - 1;
     }
 }

@@ -30,6 +30,7 @@ public class EnemyHorizontalMovement : MonoBehaviour
         }
 
     }
+    //Does everything inside every frame that the physic happens
     private void FixedUpdate()
     {
         //If the isLeft variable is true then the sprite is set to face left and start moving that direction

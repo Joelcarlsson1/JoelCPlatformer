@@ -16,11 +16,17 @@ public class PlayerMovement : MonoBehaviour
     //Private variable which lets this script controll the player sprite's rigidbody.
     private Rigidbody2D rbody;
 
-    // Use this for initialization
+    private Transform playerPos;
+
+    private float playerScale = 0.75f;
+    
+
+    //Start does what is in it when you start the game
     void Start()
     {
         // Checks if the object with this script on it has a rigidbody. If it does then it sets the rbody variable to that component
         rbody = GetComponent<Rigidbody2D>();
+        playerPos = GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -35,11 +41,18 @@ public class PlayerMovement : MonoBehaviour
         //The reason why this is needed is to stop the player from jumping while in mid air.
         if (Input.GetButtonDown("Jump"))
         {
-            if (groundCheck.isGrounded == true)
+            if (groundCheck.touching > 0)
             {
                 rbody.velocity = new Vector2(rbody.velocity.x, jumpSpeed);
             }
         }
-
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            playerPos.localScale = new Vector3(-playerScale, playerPos.localScale.y, playerPos.localScale.z);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            playerPos.localScale = new Vector3(playerScale, playerPos.localScale.y, playerPos.localScale.z);
+        }
     }
 }
