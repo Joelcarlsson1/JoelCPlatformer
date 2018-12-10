@@ -10,7 +10,7 @@ public class Coin : MonoBehaviour
     //The speed which the coin rotates at
     private float spinSpeed = 180;
 
-    //A universal variable for how much score you have
+    //A universal variable for how much score you have. It is static since the score shouldn't be tied to a specific object and instead be the same across all objects.
     public static int score;
 
     private void Update()
@@ -19,6 +19,7 @@ public class Coin : MonoBehaviour
         transform.Rotate(0, spinSpeed * Time.deltaTime, 0);
         
     }
+    //Ontriggerenter does everything inside of it when something with a collider enters it.
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //If an object with the tag Player enters the collision the coin gets destroyed and it adds one to the score counter.

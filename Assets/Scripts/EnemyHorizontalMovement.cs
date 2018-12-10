@@ -12,13 +12,12 @@ public class EnemyHorizontalMovement : MonoBehaviour
 
     //A bool variable to change if the enemy is going left or not left
     public bool isLeft = true;
-
-
-    // Use this for initialization
+    
     void Start()
     {
         //Assigns the rbody variable the to the rigidbody on the object
         rbody = GetComponent<Rigidbody2D>();
+        
     }
 
     //When the enemy enters a trigger with the tag InvisibleWall it sets the isLeft variable to the the opposite state.
@@ -30,7 +29,7 @@ public class EnemyHorizontalMovement : MonoBehaviour
         }
 
     }
-    //Does everything inside every frame that the physic happens
+    //Does everything inside every frame that the physics happen
     private void FixedUpdate()
     {
         //If the isLeft variable is true then the sprite is set to face left and start moving that direction
